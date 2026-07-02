@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api, { getImageUrl } from '../api';
 import { 
   Upload, 
   Edit3, 
@@ -41,7 +41,7 @@ export default function Dashboard({ token, email, onLogout }) {
   const fetchHistory = async () => {
     setHistoryLoading(true);
     try {
-      const response = await axios.get('/api/predict/history/', apiConfig);
+      const response = await api.get('/api/predict/history/', apiConfig);
       setHistory(response.data);
     } catch (err) {
       console.error('Failed to fetch history:', err);
@@ -98,7 +98,7 @@ export default function Dashboard({ token, email, onLogout }) {
     formData.append('image', selectedFile);
 
     try {
-      const response = await axios.post('/api/predict/upload/', formData, {
+      const response = await api.post('/api/predict/upload/', formData, {
         headers: {
           ...apiConfig.headers,
           'Content-Type': 'multipart/form-data',
@@ -221,7 +221,7 @@ export default function Dashboard({ token, email, onLogout }) {
       const formData = new FormData();
       formData.append('image', file);
 
-      axios.post('/api/predict/upload/', formData, {
+      api.post('/api/predict/upload/', formData, {
         headers: {
           ...apiConfig.headers,
           'Content-Type': 'multipart/form-data',
@@ -292,7 +292,7 @@ export default function Dashboard({ token, email, onLogout }) {
             ) : (
               history.map((item) => (
                 <div key={item.id} className="history-item">
-                  <img src={item.image} alt={`Digit ${item.predicted_class}`} className="history-thumb" />
+                  <img src={getImageUrl(item.image)} alt={`Digit ${item.predicted_class}`} className="history-thumb" />
                   <div className="history-details">
                     <div className="history-pred">
                       <span>Prediction</span>
@@ -452,7 +452,7 @@ export default function Dashboard({ token, email, onLogout }) {
                 <div className="result-image-panel">
                   <span className="result-image-label">Input Image</span>
                   <div className="result-img-wrapper">
-                    <img src={result.image} alt="Classified" className="result-img" />
+                    <img src={getImageUrl(result.image)} alt="Classified" className="result-img" />
                   </div>
                 </div>
 

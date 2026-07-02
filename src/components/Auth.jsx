@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Mail, Lock, LogIn, UserPlus, AlertCircle, Sparkles } from 'lucide-react';
 
 export default function Auth({ onAuthSuccess }) {
@@ -30,7 +30,7 @@ export default function Auth({ onAuthSuccess }) {
     try {
       if (isLogin) {
         // Login endpoint
-        const response = await axios.post('/api/users/login/', {
+        const response = await api.post('/api/users/login/', {
           email,
           password,
         });
@@ -39,13 +39,13 @@ export default function Auth({ onAuthSuccess }) {
         onAuthSuccess(access, email);
       } else {
         // Signup endpoint
-        await axios.post('/api/users/register/', {
+        await api.post('/api/users/register/', {
           email,
           password,
         });
         
         // Log user in automatically after successful registration
-        const loginResponse = await axios.post('/api/users/login/', {
+        const loginResponse = await api.post('/api/users/login/', {
           email,
           password,
         });
