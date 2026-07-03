@@ -13,12 +13,18 @@ const api = axios.create({
  */
 export const getImageUrl = (url) => {
   if (!url) return '';
+
+  let path = url;
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    return url;
+    try {
+      path = new URL(url).pathname; // e.g. "/media/mnist_uploads/xxx.png"
+    } catch {
+      path = url;
+    }
   }
-  const normalizedBase = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
-  const normalizedPath = url.startsWith('/') ? url : `/${url}`;
-  return `${normalizedBase}${normalizedPath}`;
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return normalizedPath; // relative to current origin -> nginx /media/ block handles it
 };
 
 export default api;

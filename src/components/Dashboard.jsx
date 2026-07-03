@@ -41,7 +41,7 @@ export default function Dashboard({ token, email, onLogout }) {
   const fetchHistory = async () => {
     setHistoryLoading(true);
     try {
-      const response = await api.get('/api/predict/history/', apiConfig);
+      const response = await api.get('/predict/history/', apiConfig);
       setHistory(response.data);
     } catch (err) {
       console.error('Failed to fetch history:', err);
@@ -98,7 +98,7 @@ export default function Dashboard({ token, email, onLogout }) {
     formData.append('image', selectedFile);
 
     try {
-      const response = await api.post('/api/predict/upload/', formData, {
+      const response = await api.post('/predict/upload/', formData, {
         headers: {
           ...apiConfig.headers,
           'Content-Type': 'multipart/form-data',
@@ -221,7 +221,7 @@ export default function Dashboard({ token, email, onLogout }) {
       const formData = new FormData();
       formData.append('image', file);
 
-      api.post('/api/predict/upload/', formData, {
+      api.post('/predict/upload/', formData, {
         headers: {
           ...apiConfig.headers,
           'Content-Type': 'multipart/form-data',

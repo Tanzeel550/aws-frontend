@@ -30,7 +30,7 @@ export default function Auth({ onAuthSuccess }) {
     try {
       if (isLogin) {
         // Login endpoint
-        const response = await api.post('/api/users/login/', {
+        const response = await api.post('/users/login/', {
           email,
           password,
         });
@@ -39,13 +39,13 @@ export default function Auth({ onAuthSuccess }) {
         onAuthSuccess(access, email);
       } else {
         // Signup endpoint
-        await api.post('/api/users/register/', {
+        await api.post('/users/register/', {
           email,
           password,
         });
         
         // Log user in automatically after successful registration
-        const loginResponse = await api.post('/api/users/login/', {
+        const loginResponse = await api.post('/users/login/', {
           email,
           password,
         });
