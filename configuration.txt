@@ -1,0 +1,60 @@
+
+#!/bin/bash
+sudo dnf update -y
+sudo dnf install git -y
+sudo dnf install -y nginx
+curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
+sudo yum install -y nodejs
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+git clone https://github.com/Tanzeel550/aws-frontend.git
+cd aws-frontend
+echo 'VITE_API_URL=/api' > .env
+npm i
+npm run build
+
+sudo rm -rf /usr/share/nginx/html/*
+sudo cp -r dist/* /usr/share/nginx/html/
+
+sudo tee /etc/nginx/nginx.conf > /dev/null << 'EOF'
+events {}
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    server {
+        listen 80;
+        server_name _;
+
+        # Serve the React/Vite build
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html;
+            try_files $uri /index.html;
+        }
+
+        # backend url, the load balancer url is fake one I.
+        # Reverse proxy API calls to the private backend
+        location /api/ {
+            proxy_pass http://internal-my-backend-load-balancer-71854832.eu-north-1.elb.amazonaws.com:8000/api/;
+            proxy_http_version 1.1;
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+
+            proxy_redirect off;
+        }
+        
+        # backend url, the load balancer url here is fake one.
+        location /media/ {
+    			proxy_pass http://internal-my-backend-load-balancer-71854832.eu-north-1.elb.amazonaws.com/media/;
+		    proxy_set_header Host $host;
+		}
+    }
+}
+EOF
+
+sudo nginx -t && sudo systemctl reload nginx
