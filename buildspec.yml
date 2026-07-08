@@ -4,7 +4,7 @@ env:
     AWS_ACCOUNT_ID: "455540676747"
     AWS_REGION: "eu-north-1"
     REPOSITORY_NAME: "narkina-frontend-ecr-repo"
-    CONTAINER_NAME: "narkina-frontend"
+    CONTAINER_NAME: "narkina-frontend-container"
 phases:
   pre_build:
     commands:
