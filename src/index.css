@@ -1,4 +1,60 @@
 :root {
+  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+}
+
+/* Light Theme (Default) */
+.theme-light, :root:not(.theme-dark) {
+  --bg-gradient: radial-gradient(circle at top left, #f3e8ff, #f8fafc 50%, #e2e8f0);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(0, 0, 0, 0.15);
+  
+  --primary-gradient: linear-gradient(135deg, #7c3aed, #2563eb);
+  --primary-hover: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  --primary-color: #7c3aed;
+  --secondary-color: #2563eb;
+  
+  --text-primary: #1e1b4b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --shadow-glow: 0 8px 32px 0 rgba(124, 58, 237, 0.08);
+  --shadow-glow-strong: 0 0 20px 2px rgba(124, 58, 237, 0.25);
+  
+  --navbar-bg: rgba(255, 255, 255, 0.75);
+  --logo-gradient: linear-gradient(135deg, #1e1b4b, #7c3aed);
+  --heading-gradient: linear-gradient(135deg, #1e1b4b, #4338ca);
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  
+  --btn-secondary-bg: rgba(0, 0, 0, 0.03);
+  --btn-secondary-hover-bg: rgba(0, 0, 0, 0.06);
+  
+  --input-bg: rgba(0, 0, 0, 0.015);
+  --input-focus-bg: rgba(0, 0, 0, 0.03);
+  
+  --history-item-bg: rgba(0, 0, 0, 0.015);
+  --history-item-hover-bg: rgba(0, 0, 0, 0.04);
+  
+  --tab-selector-bg: rgba(0, 0, 0, 0.02);
+  --tab-btn-hover-bg: rgba(0, 0, 0, 0.04);
+  
+  --dropzone-bg: rgba(0, 0, 0, 0.005);
+  --result-container-bg: rgba(0, 0, 0, 0.01);
+  --scrollbar-track-bg: rgba(0, 0, 0, 0.01);
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.15);
+  --scrollbar-thumb-hover-bg: rgba(124, 58, 237, 0.3);
+  
+  --badge-bg: rgba(0, 0, 0, 0.06);
+  --confidence-bg: rgba(0, 0, 0, 0.05);
+  --loader-border: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme */
+.theme-dark {
   --bg-gradient: radial-gradient(circle at top left, #120c24, #080512 60%, #030206);
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.07);
@@ -8,19 +64,40 @@
   --primary-hover: linear-gradient(135deg, #a78bfa, #60a5fa);
   --primary-color: #8b5cf6;
   --secondary-color: #3b82f6;
-  --success-color: #10b981;
-  --danger-color: #ef4444;
   
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
   --text-muted: #6b7280;
   
-  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
   --shadow-glow: 0 8px 32px 0 rgba(139, 92, 246, 0.15);
   --shadow-glow-strong: 0 0 20px 2px rgba(139, 92, 246, 0.4);
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --navbar-bg: rgba(6, 5, 17, 0.4);
+  --logo-gradient: linear-gradient(135deg, #ffffff, #a78bfa);
+  --heading-gradient: linear-gradient(135deg, #ffffff, #d1d5db);
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  
+  --btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-hover-bg: rgba(255, 255, 255, 0.1);
+  
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --input-focus-bg: rgba(255, 255, 255, 0.05);
+  
+  --history-item-bg: rgba(255, 255, 255, 0.015);
+  --history-item-hover-bg: rgba(255, 255, 255, 0.04);
+  
+  --tab-selector-bg: rgba(255, 255, 255, 0.02);
+  --tab-btn-hover-bg: rgba(255, 255, 255, 0.05);
+  
+  --dropzone-bg: rgba(255, 255, 255, 0.005);
+  --result-container-bg: rgba(255, 255, 255, 0.015);
+  --scrollbar-track-bg: rgba(255, 255, 255, 0.01);
+  --scrollbar-thumb-bg: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover-bg: rgba(139, 92, 246, 0.3);
+  
+  --badge-bg: rgba(255, 255, 255, 0.06);
+  --confidence-bg: rgba(255, 255, 255, 0.05);
+  --loader-border: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -45,14 +122,14 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.01);
+  background: var(--scrollbar-track-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scrollbar-thumb-bg);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.3);
+  background: var(--scrollbar-thumb-hover-bg);
 }
 
 /* Glassmorphism utility card */
@@ -74,7 +151,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--font-title);
   font-weight: 700;
   letter-spacing: -0.025em;
-  background: linear-gradient(135deg, #ffffff, #d1d5db);
+  background: var(--heading-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -93,7 +170,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   padding: 1.25rem 2rem;
   border-bottom: 1px solid var(--glass-border);
-  background: rgba(6, 5, 17, 0.4);
+  background: var(--navbar-bg);
   backdrop-filter: blur(10px);
   z-index: 10;
 }
@@ -106,7 +183,7 @@ h1, h2, h3, h4, h5 {
   font-family: var(--font-title);
   font-weight: 800;
   text-decoration: none;
-  background: linear-gradient(135deg, #ffffff, #a78bfa);
+  background: var(--logo-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -151,13 +228,13 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--btn-secondary-bg);
   color: var(--text-primary);
   border-color: var(--glass-border);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--btn-secondary-hover-bg);
   border-color: var(--glass-border-hover);
   transform: translateY(-2px);
 }
@@ -193,7 +270,7 @@ h1, h2, h3, h4, h5 {
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--card-shadow);
 }
 
 .auth-header {
@@ -229,7 +306,7 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--input-bg);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -239,7 +316,7 @@ h1, h2, h3, h4, h5 {
 
 .input-control:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--input-focus-bg);
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
@@ -325,13 +402,13 @@ h1, h2, h3, h4, h5 {
   gap: 0.75rem;
   padding: 0.75rem;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--history-item-bg);
   border: 1px solid var(--glass-border);
   transition: var(--transition-smooth);
 }
 
 .history-item:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--history-item-hover-bg);
   border-color: var(--glass-border-hover);
   transform: translateX(4px);
 }
@@ -414,7 +491,7 @@ h1, h2, h3, h4, h5 {
 
 .tab-selector {
   display: inline-flex;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tab-selector-bg);
   border: 1px solid var(--glass-border);
   border-radius: 12px;
   padding: 0.25rem;
@@ -445,7 +522,7 @@ h1, h2, h3, h4, h5 {
 
 .tab-btn:not(.active):hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--tab-btn-hover-bg);
 }
 
 .workspace-card {
@@ -478,7 +555,7 @@ h1, h2, h3, h4, h5 {
   justify-content: center;
   cursor: pointer;
   transition: var(--transition-smooth);
-  background: rgba(255, 255, 255, 0.005);
+  background: var(--dropzone-bg);
   padding: 2rem;
   min-height: 250px;
   text-align: center;
@@ -592,7 +669,7 @@ h1, h2, h3, h4, h5 {
   grid-template-columns: 1fr 1.2fr;
   gap: 2rem;
   align-items: center;
-  background: rgba(255, 255, 255, 0.015);
+  background: var(--result-container-bg);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 1.5rem;
@@ -682,7 +759,7 @@ h1, h2, h3, h4, h5 {
 
 .confidence-bar-bg {
   height: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--confidence-bg);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -697,7 +774,7 @@ h1, h2, h3, h4, h5 {
 
 /* Loading animations */
 .loader-spinner {
-  border: 3px solid rgba(255, 255, 255, 0.05);
+  border: 3px solid var(--loader-border);
   border-top: 3px solid var(--primary-color);
   border-radius: 50%;
   width: 48px;

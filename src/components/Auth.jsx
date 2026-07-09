@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import api from '../api';
-import { Mail, Lock, LogIn, UserPlus, AlertCircle, Sparkles } from 'lucide-react';
+import { Mail, Lock, LogIn, UserPlus, AlertCircle, Sparkles, Sun, Moon } from 'lucide-react';
 
-export default function Auth({ onAuthSuccess }) {
+export default function Auth({ onAuthSuccess, theme, onToggleTheme }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -88,8 +88,20 @@ export default function Auth({ onAuthSuccess }) {
     <div className="auth-wrapper">
       <div className="glass-panel auth-card">
         <div className="auth-header">
-          <div style={{ display: 'inline-flex', padding: '10px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '12px', marginBottom: '1rem', color: '#8b5cf6' }}>
-            <Sparkles size={24} />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <div style={{ width: '44px' }}></div>
+            <div style={{ display: 'inline-flex', padding: '10px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '12px', color: '#8b5cf6' }}>
+              <Sparkles size={24} />
+            </div>
+            <button
+              className="btn btn-secondary btn-icon"
+              onClick={onToggleTheme}
+              title="Toggle Theme"
+              type="button"
+              style={{ padding: '8px', borderRadius: '50%', background: 'var(--btn-secondary-bg)', border: '1px solid var(--glass-border)' }}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </div>
           <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
           <p>{isLogin ? 'Enter your details to classify digits' : 'Register to start testing handwritten digits'}</p>

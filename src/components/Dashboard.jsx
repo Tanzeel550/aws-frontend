@@ -11,10 +11,12 @@ import {
   Trash2, 
   Cpu, 
   CheckCircle,
-  HelpCircle
+  HelpCircle,
+  Sun,
+  Moon
 } from 'lucide-react';
 
-export default function Dashboard({ token, email, onLogout }) {
+export default function Dashboard({ token, email, onLogout, theme, onToggleTheme }) {
   const [activeTab, setActiveTab] = useState('upload'); // 'upload' | 'draw'
   const [history, setHistory] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -256,6 +258,14 @@ export default function Dashboard({ token, email, onLogout }) {
           <span>MNIST Neural Classifier</span>
         </a>
         <div className="nav-user">
+          <button 
+            className="btn btn-secondary btn-icon" 
+            onClick={onToggleTheme} 
+            title="Toggle Theme"
+            style={{ padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <span className="user-email">{email}</span>
           <button className="btn btn-secondary btn-danger" onClick={onLogout}>
             <LogOut size={16} />
@@ -272,7 +282,7 @@ export default function Dashboard({ token, email, onLogout }) {
           <div className="sidebar-header">
             <History size={18} style={{ color: '#8b5cf6' }} />
             <h3>History</h3>
-            <span style={{ fontSize: '0.75rem', background: 'rgba(255,255,255,0.06)', padding: '0.125rem 0.5rem', borderRadius: '10px', color: 'var(--text-secondary)', marginLeft: 'auto' }}>
+            <span style={{ fontSize: '0.75rem', background: 'var(--badge-bg)', padding: '0.125rem 0.5rem', borderRadius: '10px', color: 'var(--text-secondary)', marginLeft: 'auto' }}>
               {history.length}
             </span>
           </div>
